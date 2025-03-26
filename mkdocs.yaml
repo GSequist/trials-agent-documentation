@@ -1,0 +1,30 @@
+site_name: trials-agent API
+copyright: 
+theme:
+  name: material
+  logo: assets/dna.webp
+  favicon: assets/dna.webp
+  palette:
+    scheme: slate
+    primary: black
+    accent: indigo
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition
+nav:
+  - Home: index.md
+  - Authentication: authentication.md
+  - Endpoints:
+    - Conversations: conversations.md
+    - Files: files.md
+    - Chat: chat.md
+  - Trials Agent Module: agent.md
+  - Integration: integration.md
