@@ -1,4 +1,4 @@
-### Bearer Token Authentication
+# Bearer Token Authentication
 
 The trials-agent API supports authentication via Azure Active Directory OAuth 2.0 flow, providing secure access using bearer tokens.
 
