@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentication-security" class="md-skip">
+        <a href="#bearer-token-authentication" class="md-skip">
           Skip to content
         </a>
       
@@ -361,19 +361,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#authentication-security" class="md-nav__link">
+  <a href="#bearer-token-authentication" class="md-nav__link">
     <span class="md-ellipsis">
-      Authentication &amp; Security
+      Bearer Token Authentication
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Authentication &amp; Security">
+    <nav class="md-nav" aria-label="Bearer Token Authentication">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ip-whitelisting" class="md-nav__link">
+  <a href="#authentication-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      IP Whitelisting
+      Authentication Flow
     </span>
   </a>
   
@@ -381,6 +381,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store-the-token-received-from-azure-callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Store the token received from /azure-callback
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-the-token-in-subsequent-api-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the token in subsequent API calls
+    </span>
+  </a>
   
 </li>
       
@@ -564,11 +582,46 @@
 
 
 
-  <h1>Authentication</h1>
-
-<h2 id="authentication-security">Authentication &amp; Security</h2>
-<h3 id="ip-whitelisting">IP Whitelisting</h3>
-<p>For secure backend-to-backend integration, trials-agent uses IP whitelisting to restrict access to trusted sources.</p>
+<h3 id="bearer-token-authentication">Bearer Token Authentication</h3>
+<p>The trials-agent API supports authentication via Azure Active Directory OAuth 2.0 flow, providing secure access using bearer tokens.</p>
+<h4 id="authentication-flow">Authentication Flow</h4>
+<ol>
+<li><strong>Initiate Login</strong>: Direct users to the Azure login endpoint to begin authentication</li>
+</ol>
+<p><strong>GET</strong> /azure-login</p>
+<p>{
+  "login_url": "https://login.microsoftonline.com/..."
+}</p>
+<ol>
+<li><strong>Complete Authentication</strong>: After successful Azure authentication, the user is redirected to the callback URL</li>
+</ol>
+<p><strong>GET</strong> /azure-callback</p>
+<ol>
+<li>Upon successful authentication, the endpoint returns:</li>
+</ol>
+<p>{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer",
+  "email": "user@example.com"
+}</p>
+<ol>
+<li><strong>Using token</strong>: Using the Token: Include the token in subsequent API requests using the Authorization header</li>
+</ol>
+<p>Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</p>
+<p><strong>Example API Request with Bearer Token</strong></p>
+<p>import requests</p>
+<h1 id="store-the-token-received-from-azure-callback">Store the token received from /azure-callback</h1>
+<p>token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</p>
+<h1 id="use-the-token-in-subsequent-api-calls">Use the token in subsequent API calls</h1>
+<p>headers = {
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json"
+}</p>
+<p>response = requests.get(
+    "https://api.trials-agent.example.com/conversations",
+    headers=headers
+)</p>
+<p>data = response.json()</p>
 
 
 

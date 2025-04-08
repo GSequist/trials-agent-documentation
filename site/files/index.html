@@ -633,7 +633,7 @@
 <li>File remains available for future conversations until deleted</li>
 </ul>
 <h3 id="upload-file">Upload File</h3>
-<p><strong>POST</strong> <code>/upload/{user_id}</code></p>
+<p><strong>POST</strong> <code>/api/files</code></p>
 <p><strong>Form Data</strong>:
 - <strong>file</strong>: File to upload (multipart/form-data)</p>
 <p><strong>Response</strong>:
@@ -649,7 +649,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="list-files">List Files</h3>
-<p><strong>GET</strong> <code>/files/{user_id}</code></p>
+<p><strong>GET</strong> <code>/api/files</code></p>
 <p><strong>Response</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="s2">&quot;file1.txt&quot;</span><span class="p">,</span>
@@ -657,10 +657,10 @@
 <span class="p">]</span>
 </code></pre></div></p>
 <h3 id="download-file">Download File</h3>
-<p><strong>GET</strong> <code>/download/{user_id}?file=filename.ext</code></p>
-<p>Returns the file as an attachment.</p>
+<p><strong>GET</strong> <code>/api/files/{file_name}</code></p>
+<p>Returns the a pre-signed link as a file download.</p>
 <h3 id="delete-file">Delete File</h3>
-<p><strong>DELETE</strong> <code>/delete/{user_id}/{file_name}</code></p>
+<p><strong>DELETE</strong> <code>/api/files/{file_name}</code></p>
 <p><strong>Response</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>

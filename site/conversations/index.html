@@ -609,7 +609,7 @@
 
 <h2 id="conversation-management">Conversation Management</h2>
 <h3 id="list-conversations">List Conversations</h3>
-<p><strong>GET</strong> <code>/api/conversations/list/{user_id}</code></p>
+<p><strong>GET</strong> <code>/api/conversations/list</code></p>
 <p>Returns all conversations for a user.</p>
 <p><strong>Response</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
@@ -621,7 +621,7 @@
 <span class="p">]</span>
 </code></pre></div></p>
 <h3 id="get-conversation-messages">Get Conversation Messages</h3>
-<p><strong>GET</strong> <code>/api/conversations/{user_id}/{conversation_id}</code></p>
+<p><strong>GET</strong> <code>/api/conversations/{conversation_id}</code></p>
 <p><strong>Query Parameters</strong>:
 - <strong>page</strong>: Page number (default: 1)
 - <strong>pageSize</strong>: Messages per page (default: 20)</p>
@@ -645,7 +645,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="create-conversation">Create Conversation</h3>
-<p><strong>POST</strong> <code>/api/conversations/create/{user_id}</code></p>
+<p><strong>POST</strong> <code>/api/conversations/</code></p>
 <p><strong>Request Body</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New Conversation&quot;</span>
@@ -659,7 +659,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="rename-conversation">Rename Conversation</h3>
-<p><strong>PUT</strong> <code>/api/conversations/rename/{user_id}/{conversation_id}</code></p>
+<p><strong>PUT</strong> <code>/api/conversations/{conversation_id}</code></p>
 <p><strong>Request Body</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Updated Name&quot;</span>
@@ -671,7 +671,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="delete-conversation">Delete Conversation</h3>
-<p><strong>DELETE</strong> <code>/api/conversations/delete/{user_id}/{conversation_id}</code></p>
+<p><strong>DELETE</strong> <code>/api/conversations/{conversation_id}</code></p>
 <p><strong>Response</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>

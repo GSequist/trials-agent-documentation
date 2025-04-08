@@ -599,7 +599,7 @@
 
 <h2 id="client-integration">Client Integration</h2>
 <h3 id="example-processing-streamed-responses">Example: Processing Streamed Responses</h3>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">eventSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="sb">`/api/chat/</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">conversationId</span><span class="si">}</span><span class="sb">?message=</span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">eventSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventSource</span><span class="p">(</span><span class="sb">`/api/chat/</span><span class="si">${</span><span class="nx">conversationId</span><span class="si">}</span><span class="sb">?message=</span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 
 <span class="nx">eventSource</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;[DONE]&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -616,6 +616,9 @@
 <span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;tool_call&quot;</span><span class="o">:</span>
 <span class="w">      </span><span class="c1">// Display tool being called</span>
 <span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;tool_progress&quot;</span><span class="o">:</span>
+<span class="w">      </span><span class="c1">// Display tool percentage progress for long-running tasks</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 <span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;tool_result&quot;</span><span class="o">:</span>
 <span class="w">      </span><span class="c1">// Display tool results, possibly with visualization</span>
 <span class="w">      </span><span class="k">break</span><span class="p">;</span>
@@ -624,7 +627,7 @@
 
 <span class="c1">// To stop the stream</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">stopStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`/api/stop/</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">conversationId</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">streamId</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`/api/stop/</span><span class="si">${</span><span class="nx">conversationId</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">streamId</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span>
@@ -679,7 +682,7 @@
 <span class="w">  </span><span class="k">break</span><span class="p">;</span>
 </code></pre></div>
 <h4 id="live-chart">Live Chart</h4>
-<p>Agent sometimes visualizes analyzed data streaming a live chart:</p>
+<p>Agent can visualize analyzed data streaming a live chart:</p>
 <div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="s2">&quot;tool_result&quot;</span><span class="o">:</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">toolName</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;live_chart&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">chartData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
