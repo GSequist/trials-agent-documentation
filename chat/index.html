@@ -582,7 +582,7 @@
 
 <h2 id="chat-functionality">Chat Functionality</h2>
 <h3 id="send-message-and-stream-response">Send Message and Stream Response</h3>
-<p><strong>GET</strong> <code>/api/chat/{user_id}/{conversation_id}</code></p>
+<p><strong>GET</strong> <code>/api/chat/{conversation_id}</code></p>
 <p><strong>Query Parameters</strong>:
 - <strong>message</strong>: User's input message
 - <strong>images</strong>: JSON array of image filenames to include (optional)</p>
@@ -594,7 +594,7 @@
 <li><strong>End of Stream</strong>: <code>data: [DONE]</code></li>
 </ul>
 <h3 id="stop-stream">Stop Stream</h3>
-<p><strong>POST</strong> <code>/api/stop/{user_id}/{conversation_id}/{stream_id}</code></p>
+<p><strong>POST</strong> <code>/api/stop/{conversation_id}/{stream_id}</code></p>
 <p>Stops an active streaming response.</p>
 <p><strong>Response</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
