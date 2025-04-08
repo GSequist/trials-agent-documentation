@@ -2,7 +2,7 @@
 
 ### List Conversations
 
-**GET** `/api/conversations/list/{user_id}`
+**GET** `/api/conversations/list`
 
 Returns all conversations for a user.
 
@@ -19,7 +19,7 @@ Returns all conversations for a user.
 
 ### Get Conversation Messages
 
-**GET** `/api/conversations/{user_id}/{conversation_id}`
+**GET** `/api/conversations/{conversation_id}`
 
 **Query Parameters**:
 - **page**: Page number (default: 1)
@@ -48,7 +48,7 @@ Returns all conversations for a user.
 
 ### Create Conversation
 
-**POST** `/api/conversations/create/{user_id}`
+**POST** `/api/conversations/`
 
 **Request Body**:
 ```json
@@ -68,7 +68,7 @@ Returns all conversations for a user.
 
 ### Rename Conversation
 
-**PUT** `/api/conversations/rename/{user_id}/{conversation_id}`
+**PUT** `/api/conversations/{conversation_id}`
 
 **Request Body**:
 ```json
@@ -86,7 +86,7 @@ Returns all conversations for a user.
 
 ### Delete Conversation
 
-**DELETE** `/api/conversations/delete/{user_id}/{conversation_id}`
+**DELETE** `/api/conversations/{conversation_id}`
 
 **Response**:
 ```json

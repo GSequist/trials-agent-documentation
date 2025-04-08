@@ -3,7 +3,7 @@
 ### Example: Processing Streamed Responses
 
 ```javascript
-const eventSource = new EventSource(`/api/chat/${userId}/${conversationId}?message=${message}`);
+const eventSource = new EventSource(`/api/chat/${conversationId}?message=${message}`);
 
 eventSource.onmessage = (event) => {
   if (event.data === "[DONE]") {
@@ -20,6 +20,9 @@ eventSource.onmessage = (event) => {
     case "tool_call":
       // Display tool being called
       break;
+    case "tool_progress":
+      // Display tool percentage progress for long-running tasks
+      break;
     case "tool_result":
       // Display tool results, possibly with visualization
       break;
@@ -28,7 +31,7 @@ eventSource.onmessage = (event) => {
 
 // To stop the stream
 const stopStream = () => {
-  fetch(`/api/stop/${userId}/${conversationId}/${streamId}`, {
+  fetch(`/api/stop/${conversationId}/${streamId}`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -90,7 +93,7 @@ case "tool_result":
 
 #### Live Chart
 
-Agent sometimes visualizes analyzed data streaming a live chart:
+Agent can visualize analyzed data streaming a live chart:
 
 ```javascript
 case "tool_result":

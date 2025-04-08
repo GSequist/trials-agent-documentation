@@ -19,7 +19,7 @@ Files uploaded through the API are used in multiple ways:
 
 ### Upload File
 
-**POST** `/upload/{user_id}`
+**POST** `/api/files`
 
 **Form Data**:
 - **file**: File to upload (multipart/form-data)
@@ -42,7 +42,7 @@ Files uploaded through the API are used in multiple ways:
 
 ### List Files
 
-**GET** `/files/{user_id}`
+**GET** `/api/files`
 
 **Response**:
 ```json
@@ -54,13 +54,13 @@ Files uploaded through the API are used in multiple ways:
 
 ### Download File
 
-**GET** `/download/{user_id}?file=filename.ext`
+**GET** `/api/files/{file_name}`
 
-Returns the file as an attachment.
+Returns the a pre-signed link as a file download.
 
 ### Delete File
 
-**DELETE** `/delete/{user_id}/{file_name}`
+**DELETE** `/api/files/{file_name}`
 
 **Response**:
 ```json

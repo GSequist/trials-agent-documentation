@@ -2,7 +2,7 @@
 
 ### Send Message and Stream Response
 
-**GET** `/api/chat/{user_id}/{conversation_id}`
+**GET** `/api/chat/{conversation_id}`
 
 **Query Parameters**:
 - **message**: User's input message
@@ -17,7 +17,7 @@
 
 ### Stop Stream
 
-**POST** `/api/stop/{user_id}/{conversation_id}/{stream_id}`
+**POST** `/api/stop/{conversation_id}/{stream_id}`
 
 Stops an active streaming response.
 
